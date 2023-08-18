@@ -54,7 +54,7 @@ function game() {
   playRound(getPlayerChoice(), getComputerChoice());
   playRound(getPlayerChoice(), getComputerChoice());
   playRound(getPlayerChoice(), getComputerChoice());
-  console.log(playerScore, computerScore);
+  console.log("You: " + playerScore + " Computer: " + computerScore);
   if (playerScore > computerScore) {
     console.log("YOU WIN THE GAME! CONGRATS!")
   } else if (playerScore < computerScore) {
