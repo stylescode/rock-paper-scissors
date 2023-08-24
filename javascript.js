@@ -14,8 +14,9 @@ function getComputerChoice() {
   return selection;
 }
 
-let results = document.createElement('p');
-let score = document.createElement('p');
+const resultSec = document.querySelector('.result-section');
+const results = document.createElement('p');
+const score = document.createElement('p');
 let playerScore = 0;
 let computerScore = 0;
 
@@ -32,20 +33,27 @@ function playRound(e) {
     ++playerScore;
   }
   resultSec.appendChild(results);
-  score.textContent = "First to 5 points wins! You: " + playerScore + " Computer: " + computerScore;
+  score.textContent = "You: " + playerScore + " Computer: " + computerScore;
   resultSec.appendChild(score);
   checkWinner();
 }
 
 function checkWinner() {
-  let winnerText = document.createElement('p');
   if (playerScore === 5) {
-    winnerText.textContent = "CONGRATS! You win the game!"
+    alert("CONGRATS! You win the game!");
+    resultSec.removeChild(score);
+    resultSec.removeChild(results);
+    playerScore = 0;
+    computerScore = 0;
   } else if (computerScore === 5) {
-    winnerText.textContent = "OOF! Computer won the game."
+    alert("OOF! Computer won the game.");
+    resultSec.removeChild(score);
+    resultSec.removeChild(results);
+    playerScore = 0;
+    computerScore = 0;
   }
-  resultSec.appendChild(winnerText);
 }
+
 
 
 /*
@@ -77,7 +85,7 @@ const buttons = document.querySelectorAll('button');
 
 buttons.forEach(button => button.addEventListener('click', playRound));
 
-const resultSec = document.querySelector('.result-section');
+
 
 
 
