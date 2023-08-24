@@ -11,30 +11,19 @@ function getComputerChoice() {
   } else {
     selection = "SCISSORS";
   }
-  console.log("Computer chose: " + selection)
   return selection;
 }
 
-function getPlayerChoice() {
-  // prompt for user input
-  // make sure user input is a valid choice
-  let selection;
-  while (selection != "ROCK" && selection != "PAPER" && selection != "SCISSORS") {
-    selection = prompt("Choose ROCK, PAPER, or SCISSORS").toUpperCase();
-  }
-  console.log("You chose: " + selection);
-  return selection;
-}
-
-// function that plays single round of rps
-// this function should take 2 parameters: playerSelection and computerSelection
-// compare player and computer choices
-// then return string that declares if user won or lost
 
 let playerScore = 0;
 let computerScore = 0;
 
-function playRound(playerSelection, computerSelection) {
+function playRound(e) {
+  let playerSelection = this.textContent;
+  let computerSelection = getComputerChoice();
+  console.log("You chose: " + playerSelection);
+  console.log("Computer chose: " + computerSelection);
+
   if (playerSelection === computerSelection) {
     console.log("it's a tie");
   } else if ((playerSelection === "ROCK" && computerSelection === "PAPER") || (playerSelection === "PAPER" && computerSelection === "SCISSORS") || (playerSelection === "SCISSORS" && computerSelection ===  "ROCK")) {
@@ -44,8 +33,11 @@ function playRound(playerSelection, computerSelection) {
     console.log("you win this round");
     ++playerScore;
   }
+  
 }
 
+
+/*
 function game() {
   // use previous function inside this one to play 5 round game
   // keep score and report winner at end
@@ -67,5 +59,13 @@ function game() {
 }
 
 game();
+
+*/
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => button.addEventListener('click', playRound));
+
+
 
 
