@@ -14,26 +14,37 @@ function getComputerChoice() {
   return selection;
 }
 
-
+let results = document.createElement('p');
+let score = document.createElement('p');
 let playerScore = 0;
 let computerScore = 0;
 
 function playRound(e) {
   let playerSelection = this.textContent;
   let computerSelection = getComputerChoice();
-  console.log("You chose: " + playerSelection);
-  console.log("Computer chose: " + computerSelection);
-
   if (playerSelection === computerSelection) {
-    console.log("it's a tie");
+    results.textContent = "Computer chose " + computerSelection + ". It's a tie.";
   } else if ((playerSelection === "ROCK" && computerSelection === "PAPER") || (playerSelection === "PAPER" && computerSelection === "SCISSORS") || (playerSelection === "SCISSORS" && computerSelection ===  "ROCK")) {
-    console.log("computer wins this round");
+    results.textContent = "Computer chose " + computerSelection + ". Computer wins this round.";
     ++computerScore;
   } else {
-    console.log("you win this round");
+    results.textContent = "Computer chose " + computerSelection + ". You win this round.";
     ++playerScore;
   }
-  
+  resultSec.appendChild(results);
+  score.textContent = "First to 5 points wins! You: " + playerScore + " Computer: " + computerScore;
+  resultSec.appendChild(score);
+  checkWinner();
+}
+
+function checkWinner() {
+  let winnerText = document.createElement('p');
+  if (playerScore === 5) {
+    winnerText.textContent = "CONGRATS! You win the game!"
+  } else if (computerScore === 5) {
+    winnerText.textContent = "OOF! Computer won the game."
+  }
+  resultSec.appendChild(winnerText);
 }
 
 
@@ -65,6 +76,9 @@ game();
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach(button => button.addEventListener('click', playRound));
+
+const resultSec = document.querySelector('.result-section');
+
 
 
 
